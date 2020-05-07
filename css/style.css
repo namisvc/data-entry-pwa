@@ -1,0 +1,123 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+
+.brand-logo img{
+	padding-top:10px;
+	height: 50px;
+	width:50px;
+}
+
+.fixed-action-btn {
+  position: fixed;
+  right: 20px;
+  top: 15px;
+  padding-top: 15px;
+  margin-bottom: 0;
+  z-index: 997;
+}
+
+#logTable table td:nth-child(0),th:nth-child(0){
+	display: none;
+}
+
+.no-pad-bot{
+	margin-top: 5%;
+}
+
+tr .edit, .delete{
+	margin:2px;
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+ input[type=submit], input[type=reset] {
+  background-color: #4CAF50; 
+  color:#fff;
+  border: none;
+  border-radius: 2px;
+  display: inline-block;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 16px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+
+
+main { 
+	min-height: 500px;
+	
+}
+
+.section {
+	padding-top: 50px;
+}
+
+.app > * {
+  display: none;
+}
+
+.app > *:last-child {
+  display: block;
+}
+
+.app > *:target {
+  display: block;
+  -webkit-animation: fade 300ms linear 1;
+          animation: fade 300ms linear 1;
+}
+
+.app > *:target ~ * {
+  display: none;
+}
+
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+@media only screen and (min-width: 601px) {
+  .container {
+    width: 85%;
+  }
+}
+
+@media only screen and (min-width: 993px) {
+  .container {
+    width: 90%;
+  }
+}
