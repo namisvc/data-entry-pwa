@@ -185,7 +185,7 @@
 			  <div class="row center">
 				<h5 class="header col s12 light">National Marketing Information System (NAMIS)</br>Farm Data Collection Entry Form</h5>
 						<br><br><br><br>
-				 <p>We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components.</br> Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+				 <p>Simply enter your full name below to begin.</br></p>
 
 			  </div>
 
