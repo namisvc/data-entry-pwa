@@ -1,4 +1,3 @@
-
 self.addEventListener('install', function(e) {
  e.waitUntil(
    caches.open('namis-data').then(function(cache) {
