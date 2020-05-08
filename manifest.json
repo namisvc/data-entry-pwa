@@ -1,5 +1,5 @@
 {
-  "name": "National Agriculture Marketing Information System Data Entry Form",
+  "name": "NAMIS Data Entry Form",
   "short_name": "NAMIS-Data Entry",
   "icons": [{
     "src": "imgs/hello-icon-128.png",
@@ -27,7 +27,7 @@
       "type": "image/png"
     }],
   "lang": "en-UK",
-  "start_url": "/index.html",
+  "start_url": "/index.md",
   "display": "standalone",
   "background_color": "white",
   "theme_color": "white"
