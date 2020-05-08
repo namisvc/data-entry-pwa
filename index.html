@@ -14,7 +14,7 @@
 	<meta name="msapplication-TileColor" content="#FFFFFF">
   <title>NAMIS - CROP DATA COLLECTION FORM</title>
 
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="/pwa.webmanifest">
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
