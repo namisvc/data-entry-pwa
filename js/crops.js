@@ -16,7 +16,7 @@ window.addEventListener("load", function() {
 		var thisDB = e.target.result;
 
 		if(!thisDB.objectStoreNames.contains("logs")) {
-			var os = thisDB.createObjectStore("logs", {keyPath: 'id', autoIncrement:false});
+			var os = thisDB.createObjectStore("logs", {keyPath: 'id', autoIncrement:true});
 			//There can be multiple logs from a single Farmer
 			os.createIndex("id", "id", {unique:true});
 			
@@ -53,22 +53,36 @@ document.onload = (event) => {
 		M.toast({html: 'You are working offline!'});
 	}
 	
-				
+	document.getElementById("menu").style.display = "none";		
 };
 
 
 function registerCollector(){
 	var datacollector = document.querySelector("#datacollector").value;
 	sessionStorage.datacollector = datacollector;
+	window.location.hash = '#data-entry';
 }
 
 
 
 function addFarmLog(e) {
+	var today = recDate();
+	var datacollector = sessionStorage.datacollector;
+	var farm_visit = '';
+	var visitDate = document.querySelector("#farm_visit").value;
+	
+	if(visitDate == getDateString()){
+		farm_visit = today;
+		console.log("Today:" + today);
+	} else {
+		farm_visit = document.querySelector("#farm_visit").value;
+		console.log(farm_visit);
+	}
+	
+	//var farm_visit = visitDate.replace(/\//g, "-").split("-").reverse().join("-");
 	var farmer_ID = document.querySelector("#farmer_ID").value;
 	var full_name = document.querySelector("#full_name").value;
 	var gender = document.querySelector("#gender").value;
-	var farm_visit = document.querySelector("#farm_visit").value;
 	var Farmer_Address = document.querySelector("#Farmer_Address").value;
 	var Farm_location = document.querySelector("#Farm_location").value;
 	var cropID = document.querySelector("#cropID").value;
@@ -86,7 +100,7 @@ function addFarmLog(e) {
 
 	//Define a log entry
 	var farmLog = {
-		id:recID(),
+		id:'f' + Math.floor((Math.random() * 100) + 1),
 		farmer_ID:farmer_ID,
 		full_name:full_name,
 		gender:gender,
@@ -98,9 +112,9 @@ function addFarmLog(e) {
 		Exp_Yield:Exp_Yield,
 		Date_Planted:Date_Planted,
 		Exp_Harvest_Date:Exp_Harvest_Date,
+		Data_collector:datacollector,
 		created: recDate()
-		
-				
+					
 	}
 	
 		
@@ -120,18 +134,6 @@ function addFarmLog(e) {
 	}
 }
 
-
-	function recID(){
-		var time = new Date();
-		var hh = time.getHours();
-		var cm = time.getMinutes();
-		var cs = time.getSeconds();
-		
-		time = 'f'+hh+cm+cs; 
-		
-		
-		return time;
-	}
 	
 	function recDate(){
 		var today = new Date();
@@ -150,17 +152,14 @@ function addFarmLog(e) {
 		{
 			mm='0'+mm;
 		} 
-		today = mm+'-'+dd+'-'+yyyy+'-'+hh+'-'+cm;
+		today = dd+'-'+mm+'-'+yyyy+'-'+hh+'-'+cm;
 		return today;
 
 	}
 
 
-
-
 function displayLogs() {
-		var datacollector = sessionStorage.datacollector;
-        var transaction = db.transaction(["logs"], "readonly");  
+		var transaction = db.transaction(["logs"], "readonly");  
         var content="<table id='logTable' class='highlight responsive-table'><thead><tr><th>id</th><th>Created</th><th>Farmer ID</th><th>Name</th><th>Gender</th><th>Visit Date</th><th>Farmer Address</th><th>Farm Location</th><th>Crop ID</th><th>Acreage</th><th>Exp Yield</th><th>Date Planted</th><th>Exp Harvest Date</th><th>Data Collector</th></thead><tbody>";
 
 		transaction.oncomplete = function(event) {
@@ -184,7 +183,7 @@ function displayLogs() {
 			content +="<td>"+cursor.value.Exp_Yield+"</td>";
 			content +="<td>"+cursor.value.Date_Planted+"</td>";
 			content +="<td>"+cursor.value.Exp_Harvest_Date+"</td>";
-			content +="<td>"+datacollector+"</td>";
+			content +="<td>"+cursor.value.Data_collector+"</td>";
 			content +="</tr>";
             cursor.continue();  
           }  
@@ -333,7 +332,7 @@ function clearData(){
 	}
 
 		request.onsuccess = function(e) {
-		M.toast({html: 'Deleted All Records!', classes: 'center-align'});
+		M.toast({html: 'Records exported!', classes: 'center-align'});
 		}
 }
 	
@@ -342,7 +341,7 @@ function clearData(){
   const year = date.getFullYear();
   const month = `${date.getMonth() + 1}`.padStart(2, '0');
   const day =`${date.getDate()}`.padStart(2, '0');
-  return `${year}${month}${day}`;
+  return `${day}-${month}-${year}`;
 }
 		
 	function exportTableToCSV() {
@@ -395,7 +394,6 @@ function downloadCSV(csv, filename) {
 			div.classList.add('disabled');
 	
 }
-
 
   // ServiceWorker is a progressive technology. Ignore unsupported browsers
   if ('serviceWorker' in navigator) {
