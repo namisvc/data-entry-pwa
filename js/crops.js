@@ -301,14 +301,24 @@ function updateLog(){
 	
     
 function  sanitizeTable(){
+	
 
-          //$('#logTable tr').find('th:last-child, td:last-child').remove();
+	var password = prompt("Enter in the password");
+        if (password=="1234") {
+            //$('#logTable tr').find('th:last-child, td:last-child').remove();
 		  
-		  $('#logTable tr').find('td:eq(0),th:eq(0)').remove();
+		$('#logTable tr').find('td:eq(0),th:eq(0)').remove();
 		  
 		  
-		  let div = document.querySelector('#export');
-			div.classList.remove('disabled');
+		let div = document.querySelector('#export');
+		  div.classList.remove('disabled');
+          
+        }
+        else 
+        {
+			alert("Incorrect Key");
+        }
+          
   }
 
 
