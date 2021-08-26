@@ -37,6 +37,10 @@ tr .edit, .delete{
 	font-size: inherit;
 }
 
+label{
+  font-size: 20px;
+}
+
  input[type=submit], input[type=reset] {
   background-color: #4CAF50; 
   color:#fff;
