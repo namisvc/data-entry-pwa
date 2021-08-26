@@ -302,8 +302,7 @@ function updateLog(){
     
 function  sanitizeTable(){
 	
-	var password = prompt("Enter in the password");
-        if (password=="1234") {
+	v
             //$('#logTable tr').find('th:last-child, td:last-child').remove();
 		  
 		$('#logTable tr').find('td:eq(0),th:eq(0)').remove();
@@ -312,15 +311,6 @@ function  sanitizeTable(){
 		let div = document.querySelector('#export');
 		  div.classList.remove('disabled');
           
-		
-		  let div = document.querySelector('#prepareLog');
-		  div.classList.add('disabled');  
-
-        }
-        else 
-        {
-			alert("Incorrect Key");
-        }
           
   }
 
