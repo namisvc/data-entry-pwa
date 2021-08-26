@@ -33,9 +33,7 @@ tr .edit, .delete{
 	font-size: inherit;
 }
 
-input-field{
-  font: 2em;
-}
+
 
  input[type=submit], input[type=reset] {
   background-color: #4CAF50; 
