@@ -32,6 +32,7 @@ window.addEventListener("load", function() {
 		//Listen for clicks
 		document.querySelector("#addLogButton").addEventListener("click", addFarmLog, false);
 		document.querySelector("#login").addEventListener("click", registerCollector, false);
+		document.querySelector("#loginExtension").addEventListener("click", registerExtension, false);
 		document.querySelector("#showLog").addEventListener("click", displayLogs, false);
 		document.querySelector("#export").addEventListener("click", exportTableToCSV, false);
 		document.querySelector("#prepareLog").addEventListener("click", sanitizeTable, false);
@@ -61,6 +62,18 @@ function registerCollector(){
 	var datacollector = document.querySelector("#datacollector").value;
 	sessionStorage.datacollector = datacollector;
 	window.location.hash = '#data-entry';
+}
+
+function registerExtension(){
+	var eoN = document.querySelector("#extension").value;
+	sessionStorage.eoN = eoN;
+
+	var hashP = document.querySelector("#eoPassowrd").value;
+
+	var eoP = window.btoa(hashP);
+	sessionStorage.eoP = eoP;
+
+	window.location.hash = '#the-default-view';
 }
 
 
@@ -200,6 +213,10 @@ function displayLogs() {
 				
 		let div = document.querySelector('#prepareLog');
 			div.classList.remove('disabled');
+
+		let div1 = document.querySelector('#verifyLog');
+			div1.classList.remove('disabled');
+   
    
 
 
@@ -303,15 +320,35 @@ function updateLog(){
 function  sanitizeTable(){
 	
 
-	var password = prompt("Enter in the password");
-        if (password=="1234") {
+	var password = prompt("Please enter key:");
+        if (password=="456852") {
             //$('#logTable tr').find('th:last-child, td:last-child').remove();
 		  
 		$('#logTable tr').find('td:eq(0),th:eq(0)').remove();
 		  
-		  
 		let div = document.querySelector('#export');
 		  div.classList.remove('disabled');
+          
+        }
+        else 
+        {
+			alert("Incorrect Key");
+        }
+          
+  }
+
+
+  function  verifyData(){
+	
+	var pwn = prompt("Please enter key:");
+
+	var pwnP = window.btoa(pwn);
+	var pwnX = sessionStorage.eoP;
+
+	
+        if (pwn== pwnX) {
+           		   
+		$('#logTable tr').append('<th>Verified</th>');
           
         }
         else 
