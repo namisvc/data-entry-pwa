@@ -142,6 +142,7 @@ function addFarmLog(e) {
 	}
 
 	request.onsuccess = function(e) {
+		M.toast({html: 'Record saved!'})
 		console.log("record saved");
 		
 	}
