@@ -39,8 +39,6 @@
 			<div class="col s12">
 				<a id="showLog" class="btn waves-effect waves-light">Generate Log<i class="material-icons right">list</i>
 				</a>
-				<a id="verifyLog" class="btn waves-effect waves-light disabled">Verify Log<i class="material-icons right">check_box_outline_blank</i>
-				</a>
 				<a id="prepareLog" class="btn waves-effect waves-light disabled">Process Log<i class="material-icons right">dynamic_feed</i>
 				</a>
 				 <a id="export" class="btn waves-effect waves-light disabled ">Export<i class="material-icons right">save_alt</i>
@@ -64,9 +62,10 @@
 		</div>
 	
 	  <div class="row">
-		<div class="input-field chklen col s12">
-          <input id="farmer_ID" data-length="6" length="6" type="number" class="validate">
+		<div class="input-field col s12">
+          <input id="farmer_ID" data-length="6" min="6" type="number" class="validate">
           <label for="farmer_ID">Farmer's ID</label>
+		  <span class="helper-text" data-error="wrong" data-success="Farmer ID Succcesful">Please enter 6 digit ID</span>
         </div>
 	  
 		<div class="input-field col s12">
@@ -212,40 +211,6 @@
 	
 	  
 
-	<div id="extensionLogin" class="section no-pad-bot">
-		<div class="row center">
-		    <div class="container">
-			  <br><br>
-			  <h1 class="header center orange-text">Extension Officer Registration</h1>
-			  <div class="row center">
-				<h5 class="header col s12 light">National Agriculture and Management Information System (NAMIS)</br>Farm Data Collection Entry Form</h5>
-						<br><br><br><br>
-				 <p>Simply enter your full name below to begin.</br></p>
-
-			  </div>
-			  <br><br>
-			</div>
-		
-		<form>
-			<div class="col s6 offset-s3">
-				<div class="input-field col s12">
-					 <input id="extension" pattern="^[a-zA-Z].*[\s\.]*$" minlength="3" type="text" class="validate">
-					 <label for="extension">Name</label>
-				</div>
-				<div class="input-field col s12">
-					<input id="eoPassowrd" type="password" pattern="^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{8,}$"  class="validate">
-					<label for="eoPassword">Password</label>
-			   </div>
-			</div>
-			<div class="col s6 offset-s3">
-				<button id="loginExtension" class="btn waves-effect waves-purple">Submit
-					<i class="material-icons right">send</i>
-				</button>
-			</div>
-		</form>
-		</div>
-	</div>
-
 
 
 
@@ -277,15 +242,6 @@
 				</button>
 			</div>
 		</form>
-		</div>
-		<div class="row">
-			<div class="container">
-				<br><br><br><br><br><br><br><br><br><br>
-				<div class="col s6 offset-s3">
-					<a href="#extensionLogin"><button id="loginExtension" class="btn waves-effect waves-purple">Extension
-					</button></a>
-				</div>
-			</div>
 		</div>
 	</div>
 	  
