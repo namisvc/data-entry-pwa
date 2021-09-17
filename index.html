@@ -69,7 +69,7 @@
         </div>
 	  
 		<div class="input-field col s12">
-          <input id="full_name" type="text" class="validate" required="" aria-required="true">
+          <input id="full_name" type="text" class="validate" required="" pattern="^[a-zA-Z ]*$" aria-required="true">
           <label for="full_name">Name</label>
         </div>
 		<div class="input-field col s12">
@@ -174,13 +174,17 @@
 			</select>
 		 </div>
         <div class="input-field col s12">
-          <input id="Acreage" type="number" class="validate">
+          <input id="Acreage" type="number" step="any" min="0" class="validate">
           <label for="Acreage">Acreage Planted</label>
         </div>
-		<div class="input-field col s12">
+	
+		<div class="input-field col s10">
           <input id="Exp_Yield" type="number" class="validate">
           <label for="Exp_Yield">Expected Yield</label>
         </div>
+		<div id="genYield" class="btn ">
+			<span>Calculate Yield</span>
+		</div>
 
 			<div class="row">
 					<div class="input-field col s12">
@@ -256,7 +260,7 @@
 
 
   <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script src="js/crops.js"></script>

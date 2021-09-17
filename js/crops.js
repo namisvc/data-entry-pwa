@@ -35,6 +35,7 @@ window.addEventListener("load", function() {
 		document.querySelector("#showLog").addEventListener("click", displayLogs, false);
 		document.querySelector("#export").addEventListener("click", exportTableToCSV, false);
 		document.querySelector("#prepareLog").addEventListener("click", sanitizeTable, false);
+		document.querySelector("#genYield").addEventListener("click", expYield, false);
 		
 	}	
 
@@ -89,9 +90,9 @@ function addFarmLog(e) {
 	var Farm_location = document.querySelector("#Farm_location").value;
 	var cropID = document.querySelector("#cropID").value;
 	var Acreage = document.querySelector("#Acreage").value;
-	var Exp_Yield = document.querySelector("#Exp_Yield").value;
+	//var Exp_Yield = 0;
 	var Date_Planted = document.querySelector("#Date_Planted").value;
-	var Exp_Harvest_Date = document.querySelector("#Exp_Harvest_Date").value;
+	//var Exp_Harvest_Date = document.querySelector("#Exp_Harvest_Date").value;
 
 	
 	//Get a transaction
@@ -111,9 +112,9 @@ function addFarmLog(e) {
 		Farm_location:Farm_location,
 		cropID:cropID,
 		Acreage:Acreage,
-		Exp_Yield:Exp_Yield,
+		Exp_Yield: expYield(),
 		Date_Planted:Date_Planted,
-		Exp_Harvest_Date:Exp_Harvest_Date,
+		Exp_Harvest_Date:expHarvest(),
 		Data_collector:datacollector,
 		created: recDate()
 					
@@ -132,11 +133,10 @@ function addFarmLog(e) {
 
 	request.onsuccess = function(e) {
 		M.toast({html: 'Record saved!'})
-		console.log("record saved");
+		console.log("Record saved");
 		
 	}
 }
-
 	
 	function recDate(){
 		var today = new Date();
@@ -159,6 +159,176 @@ function addFarmLog(e) {
 		return today;
 
 	}
+
+	function expYield(cropID){
+		
+		var Acre = document.querySelector("#Acreage").value
+		let lbsPlanted;
+
+		if (cropID = 101){
+			lbsPlanted = 3000;
+		} else if (cropID = 102) {
+			lbsPlanted = 5000;
+		} else if (cropID = 103){
+			lbsPlanted = 0;
+		} else if (cropID = 104){
+			lbsPlanted = 12000;
+		} else if (cropID = 105){
+			lbsPlanted = 8000;
+		} else if (cropID = 106){
+			lbsPlanted = 25000;
+		} else if (cropID = 107){
+			lbsPlanted = 9000;
+		} else if (cropID = 108){
+			lbsPlanted = 8000;
+		} else if (cropID = 109){
+			lbsPlanted = 2000;
+		} else if (cropID = 110){
+			lbsPlanted = 25000;
+		} else if (cropID = 111){
+			lbsPlanted = 18000;
+		} else if (cropID = 112){
+			lbsPlanted = 14000;
+		} else if (cropID = 113){
+			lbsPlanted = 11000;
+		} else if (cropID = 114){
+			lbsPlanted = 15000;
+		} else if (cropID = 115){
+			lbsPlanted = 20000;
+		} else if (cropID = 116){
+			lbsPlanted = 3000;
+		} else if (cropID = 117){
+			lbsPlanted = 0;
+		} else if (cropID = 118){
+			lbsPlanted = 3000;
+		} else if (cropID = 119){
+			lbsPlanted = 0;
+		} else if (cropID = 120){
+			lbsPlanted = 30000;
+		} else if (cropID = 121){
+			lbsPlanted = 2000;
+		} else if (cropID = 122){
+			lbsPlanted = 10000;
+		} else if (cropID = 123){
+			lbsPlanted = 15000;
+		} else if (cropID = 124){
+			lbsPlanted = 7000;
+		} else if (cropID = 125){
+			lbsPlanted = 8000;
+		} else if (cropID = 126){
+			lbsPlanted = 10000;
+		} else if (cropID = 127){
+			lbsPlanted = 2000;
+		} else if (cropID = 128){
+			lbsPlanted = 6000;
+		} else if (cropID = 129){
+			lbsPlanted = 5000;
+		} else if (cropID = 130){
+			lbsPlanted = 15000;
+		} else if (cropID = 131){
+			lbsPlanted = 100000;
+		} else if (cropID = 132){
+			lbsPlanted = 9000;
+		} else if (cropID = 133){
+			lbsPlanted = 600;
+		} else if (cropID = 134){
+			lbsPlanted = 15000;
+		} else if (cropID = 135){
+			lbsPlanted = 20000;
+		} else if (cropID = 136){
+			lbsPlanted = 8000;
+		}
+
+
+
+
+			var yield = Acre * lbsPlanted;
+			return yield;
+		}
+
+
+
+		function expHarvest(){
+			var datePlanted = document.querySelector("#Date_Planted").value;
+			let growTime;
+
+			if (cropID = 101){
+				growTime = 365;
+			} else if (cropID = 102) {
+				growTime = 456.25;
+			} else if (cropID = 103){
+				growTime = 0;
+			} else if (cropID = 104){
+				growTime = 1095;
+			} else if (cropID = 105){
+				growTime = 8000;
+			} else if (cropID = 106){
+				growTime = 8000;
+			} else if (cropID = 107){
+				growTime = 8000;
+			} else if (cropID = 108){
+				growTime = 8000;
+			} else if (cropID = 109){
+				growTime = 8000;
+			} else if (cropID = 110){
+				growTime = 8000;
+			} else if (cropID = 111){
+				growTime = 8000;
+			} else if (cropID = 112){
+				growTime = 8000;
+			} else if (cropID = 113){
+				growTime = 8000;
+			} else if (cropID = 114){
+				growTime = 8000;
+			} else if (cropID = 115){
+				growTime = 8000;
+			} else if (cropID = 116){
+				growTime = 8000;
+			} else if (cropID = 117){
+				growTime = 8000;
+			} else if (cropID = 118){
+				growTime = 8000;
+			} else if (cropID = 119){
+				growTime = 8000;
+			} else if (cropID = 120){
+				growTime = 8000;
+			} else if (cropID = 121){
+				growTime = 8000;
+			} else if (cropID = 122){
+				growTime = 8000;
+			} else if (cropID = 123){
+				growTime = 8000;
+			}
+
+
+
+
+			function convertFromStringToDate(responseDate) {
+				let dateComponents = responseDate.split('T');
+				let datePieces = dateComponents[0].split("-");
+				
+				return(new Date(datePieces[2], (datePieces[1] - 1), datePieces[0]))
+			}
+
+			var DateHelper = {
+				addDays : function(aDate, numberOfDays) {
+					aDate.setDate(aDate.getDate() + numberOfDays); // Add numberOfDays
+					return aDate;                                  // Return the date
+				},
+				format : function format(date) {
+					return [
+					   ("0" + date.getDate()).slice(-2),           // Get day and pad it with zeroes
+					   ("0" + (date.getMonth()+1)).slice(-2),      // Get month and pad it with zeroes
+					   date.getFullYear()                          // Get full year
+					].join('-');                                   // Glue the pieces together
+				}
+			}
+
+			return DateHelper.format(DateHelper.addDays(convertFromStringToDate(datePlanted), growTime));
+
+		}
+		
+	
 
 
 function displayLogs() {
@@ -250,9 +420,7 @@ function editData() {
 					$(document).ready(function() {
 						M.updateTextFields();
 					  }); 
-					  
-				
-        
+					  				        
 					document.getElementById('add-update').innerHTML = btn;
 					
 					window.location.hash = '#data-entry';
@@ -268,7 +436,6 @@ function editData() {
 function updateLog(){	
 
 	let btn = "<button id=\"addLogButton\" class=\"btn waves-effect waves-light\">Submit"+" <i class=\"material-icons right\">"+"send</i></button>";
-	
 	var id = sessionStorage.id;
 	var transaction = db.transaction(["logs"],"readwrite");
 	var store = transaction.objectStore("logs");
@@ -285,7 +452,7 @@ function updateLog(){
 				farmLog.Farm_location = document.querySelector("#Farm_location").value;
 				farmLog.cropID = document.querySelector("#cropID").value;
 				farmLog.Acreage = document.querySelector("#Acreage").value;
-				farmLog.Exp_Yield = document.querySelector("#Exp_Yield").value;
+				farmLog.Exp_Yield = expYield();
 				farmLog.Exp_Harvest_Date = document.querySelector("#Exp_Harvest_Date").value;
 				
 			var objRequest = store.put(farmLog);
@@ -303,21 +470,17 @@ function updateLog(){
 	
     
 function  sanitizeTable(){
-	
-
 	var password = prompt("Please enter key:");
         if (password=="456852") {
             //$('#logTable tr').find('th:last-child, td:last-child').remove();
 		  
-		$('#logTable tr').find('td:eq(0),th:eq(0)').remove();
-		$('#logTable tr').append('<th>Verified</th>');
+			$('#logTable tr').find('td:eq(0),th:eq(0)').remove();
+			$('#logTable tr').append('<th>Verified</th>');
 		  
-		let div = document.querySelector('#export');
-		  div.classList.remove('disabled');
+			let div = document.querySelector('#export');
+		 		div.classList.remove('disabled');
           
-        }
-        else 
-        {
+        } else {
 			alert("Incorrect Key");
         }
           
@@ -349,7 +512,7 @@ function clearData(){
 		}
 }
 	
-	function getDateString() {
+function getDateString() {
   const date = new Date();
   const year = date.getFullYear();
   const month = `${date.getMonth() + 1}`.padStart(2, '0');
