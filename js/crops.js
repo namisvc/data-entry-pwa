@@ -7,7 +7,6 @@ function indexedDBOk() {
 
 window.addEventListener("load", function() {
 	
-	//No support? Go in the corner and pout.
 	if(!indexedDBOk) return;
 
 	var openRequest = indexedDB.open("Farm Log",1);
@@ -18,29 +17,22 @@ window.addEventListener("load", function() {
 		if(!thisDB.objectStoreNames.contains("logs")) {
 			var os = thisDB.createObjectStore("logs", {keyPath: 'id', autoIncrement:true});
 			//There can be multiple logs from a single Farmer
-			os.createIndex("id", "id", {unique:true});
-			
+			os.createIndex("id", "id", {unique:true});	
 		}
-		
 	}
-	
 	
 	openRequest.onsuccess = function(e) {
 
 		db = e.target.result;
-		
-		//Listen for clicks
+
 		document.querySelector("#addLogButton").addEventListener("click", addFarmLog, false);
 		document.querySelector("#login").addEventListener("click", registerCollector, false);
 		document.querySelector("#showLog").addEventListener("click", displayLogs, false);
 		document.querySelector("#export").addEventListener("click", exportTableToCSV, false);
 		document.querySelector("#prepareLog").addEventListener("click", sanitizeTable, false);
-		document.querySelector("#genYield").addEventListener("click", expYield, false);
-		
 	}	
 
 	openRequest.onerror = function(e) {
-		//Do something for the error
 	}
 	
 
@@ -48,7 +40,7 @@ window.addEventListener("load", function() {
 
 document.onload = (event) => {
 	
-		if (navigator.onLine) {
+	if (navigator.onLine) {
 		M.toast({html: 'online!'});
 	} else {
 		M.toast({html: 'You are working offline!'});
@@ -57,15 +49,11 @@ document.onload = (event) => {
 	document.getElementById("menu").style.display = "none";		
 };
 
-
 function registerCollector(){
 	var datacollector = document.querySelector("#datacollector").value;
 	sessionStorage.datacollector = datacollector;
 	window.location.hash = '#data-entry';
 }
-
-
-
 
 
 function addFarmLog(e) {
@@ -90,11 +78,8 @@ function addFarmLog(e) {
 	var Farm_location = document.querySelector("#Farm_location").value;
 	var cropID = document.querySelector("#cropID").value;
 	var Acreage = document.querySelector("#Acreage").value;
-	//var Exp_Yield = 0;
 	var Date_Planted = document.querySelector("#Date_Planted").value;
-	//var Exp_Harvest_Date = document.querySelector("#Exp_Harvest_Date").value;
 
-	
 	//Get a transaction
 	//default for OS list is all, default for type is read
 	var transaction = db.transaction(["logs"],"readwrite");
@@ -114,7 +99,7 @@ function addFarmLog(e) {
 		Acreage:Acreage,
 		Exp_Yield: expYield(),
 		Date_Planted:Date_Planted,
-		Exp_Harvest_Date:expHarvest(),
+		Exp_Harvest_Date: expHarvest(),
 		Data_collector:datacollector,
 		created: recDate()
 					
@@ -128,13 +113,10 @@ function addFarmLog(e) {
 		alert("Sorry, there is something wrong with the data added.");
 		console.log("Error",e.target.error.name);
 		console.dir(e.target);
-		//some type of error handler
 	}
 
 	request.onsuccess = function(e) {
 		M.toast({html: 'Record saved!'})
-		console.log("Record saved");
-		
 	}
 }
 	
@@ -146,168 +128,300 @@ function addFarmLog(e) {
 		var hh = today.getHours();
 		var cm = today.getMinutes();
 		var cs = today.getSeconds();
-		if(dd<10) 
-		{
+
+		if(dd<10){
 			dd='0'+dd;
 		} 
 
-		if(mm<10) 
-		{
+		if(mm<10){
 			mm='0'+mm;
 		} 
+
 		today = dd+'-'+mm+'-'+yyyy+'-'+hh+'-'+cm;
 		return today;
 
 	}
 
-	function expYield(cropID){
-		
-		var Acre = document.querySelector("#Acreage").value
+	function expYield(){
+		 crpID = document.querySelector("#cropID").value;
+		 Acre = document.querySelector("#Acreage").value
 		let lbsPlanted;
 
-		if (cropID = 101){
-			lbsPlanted = 3000;
-		} else if (cropID = 102) {
-			lbsPlanted = 5000;
-		} else if (cropID = 103){
-			lbsPlanted = 0;
-		} else if (cropID = 104){
-			lbsPlanted = 12000;
-		} else if (cropID = 105){
-			lbsPlanted = 8000;
-		} else if (cropID = 106){
-			lbsPlanted = 25000;
-		} else if (cropID = 107){
-			lbsPlanted = 9000;
-		} else if (cropID = 108){
-			lbsPlanted = 8000;
-		} else if (cropID = 109){
-			lbsPlanted = 2000;
-		} else if (cropID = 110){
-			lbsPlanted = 25000;
-		} else if (cropID = 111){
-			lbsPlanted = 18000;
-		} else if (cropID = 112){
-			lbsPlanted = 14000;
-		} else if (cropID = 113){
-			lbsPlanted = 11000;
-		} else if (cropID = 114){
-			lbsPlanted = 15000;
-		} else if (cropID = 115){
-			lbsPlanted = 20000;
-		} else if (cropID = 116){
-			lbsPlanted = 3000;
-		} else if (cropID = 117){
-			lbsPlanted = 0;
-		} else if (cropID = 118){
-			lbsPlanted = 3000;
-		} else if (cropID = 119){
-			lbsPlanted = 0;
-		} else if (cropID = 120){
+		if (crpID == 101){
 			lbsPlanted = 30000;
-		} else if (cropID = 121){
-			lbsPlanted = 2000;
-		} else if (cropID = 122){
+		} else if (crpID == 102) {
+			 lbsPlanted = 5000;
+		} else if (crpID == 103){
+			 lbsPlanted = 0;
+		} else if (crpID == 104){
+			 lbsPlanted = 12000;
+		} else if (crpID == 105){
+			 lbsPlanted = 8000;
+		} else if (crpID == 106){
+			 lbsPlanted = 25000;
+		} else if (crpID == 107){
+			 lbsPlanted = 9000;
+		} else if (crpID == 108){
+			 lbsPlanted = 8000;
+		} else if (crpID == 109){
+			 lbsPlanted = 2000;
+		} else if (crpID == 110){
+			 lbsPlanted = 25000;
+		} else if (crpID == 111){
+			 lbsPlanted = 18000;
+		} else if (crpID == 112){
+			 lbsPlanted = 14000;
+		} else if (crpID == 113){
+			 lbsPlanted = 11000;
+		} else if (crpID == 114){
+			 lbsPlanted = 15000;
+		} else if (crpID == 115){
+			 lbsPlanted = 20000;
+		} else if (crpID == 116){
+			 lbsPlanted = 3000;
+		} else if (crpID == 117){
+			 lbsPlanted = 0;
+		} else if (crpID == 118){
+			 lbsPlanted = 3000;
+		} else if (crpID == 119){
+			 lbsPlanted = 0;
+		} else if (crpID == 120){
+			 lbsPlanted = 30000;
+		} else if (crpID == 121){
+			 lbsPlanted = 2000;
+		} else if (crpID == 122){
+			 lbsPlanted = 10000;
+		} else if (crpID == 123){
+			 lbsPlanted = 15000;
+		} else if (crpID == 124){
+			 lbsPlanted = 7000;
+		} else if (crpID == 125){
+			 lbsPlanted = 8000;
+		} else if (crpID == 126){
 			lbsPlanted = 10000;
-		} else if (cropID = 123){
-			lbsPlanted = 15000;
-		} else if (cropID = 124){
-			lbsPlanted = 7000;
-		} else if (cropID = 125){
-			lbsPlanted = 8000;
-		} else if (cropID = 126){
-			lbsPlanted = 10000;
-		} else if (cropID = 127){
+		} else if (crpID == 127){
 			lbsPlanted = 2000;
-		} else if (cropID = 128){
+		} else if (crpID == 128){
 			lbsPlanted = 6000;
-		} else if (cropID = 129){
+		} else if (crpID == 129){
 			lbsPlanted = 5000;
-		} else if (cropID = 130){
+		} else if (crpID == 130){
 			lbsPlanted = 15000;
-		} else if (cropID = 131){
+		} else if (crpID == 131){
 			lbsPlanted = 100000;
-		} else if (cropID = 132){
+		} else if (crpID == 132){
 			lbsPlanted = 9000;
-		} else if (cropID = 133){
+		} else if (crpID == 133){
 			lbsPlanted = 600;
-		} else if (cropID = 134){
+		} else if (crpID == 134){
 			lbsPlanted = 15000;
-		} else if (cropID = 135){
+		} else if (crpID == 135){
 			lbsPlanted = 20000;
-		} else if (cropID = 136){
+		} else if (crpID == 136){
 			lbsPlanted = 8000;
-		}
-
-
-
-
-			var yield = Acre * lbsPlanted;
+		} else if (crpID == 137){
+			lbsPlanted = 0;
+		} else if (crpID == 138){
+			lbsPlanted = 20000;
+		} else if (crpID == 139){
+			lbsPlanted = 12000;
+		} else if (crpID == 140){
+			lbsPlanted = 8000;
+		} else if (crpID == 141){
+			lbsPlanted = 0;
+		} else if (crpID == 146){
+			lbsPlanted = 7000;
+		} else if (crpID == 147){
+			lbsPlanted = 8000;
+		} else if (crpID == 148){
+			lbsPlanted = 0;
+		} else if (crpID == 149){
+			lbsPlanted = 6000;
+		} else if (crpID == 150){
+			lbsPlanted = 12000;
+		} else if (crpID == 151){
+			lbsPlanted = 8000; //this crop is here twice
+		} else if (crpID == 152){
+			lbsPlanted = 0;
+		} else if (crpID == 153){
+			lbsPlanted = 0;
+		} else if (crpID == 154){
+			lbsPlanted = 0;
+		} else if (crpID == 155){
+			lbsPlanted = 9000;
+		} else if (crpID == 156){
+			lbsPlanted = 20000;
+		} else if (crpID == 157){
+			lbsPlanted = 24500;
+		} else if (crpID == 158){
+			lbsPlanted = 15000;
+		} else if (crpID == 159){
+			lbsPlanted = 8000;
+		} else if (crpID == 160){
+			lbsPlanted = 5000;
+		} else if (crpID == 161){
+			lbsPlanted = 0;
+		} else if (crpID == 162){
+			lbsPlanted = 900;
+		} else if (crpID == 163){
+			lbsPlanted = 9000;
+		} else if (crpID == 164){
+			lbsPlanted = 0;
+		} else if (crpID == 165){
+			lbsPlanted = 20000;
+		} else if (crpID == 166){
+			lbsPlanted = 24000;
+		} else if (crpID == 167){
+			lbsPlanted = 0;
+		} else if (crpID == 168){
+			lbsPlanted = 18530;
+		} 
+			let yield = Acre * lbsPlanted;
 			return yield;
+			
 		}
-
-
-
+		
 		function expHarvest(){
-			var datePlanted = document.querySelector("#Date_Planted").value;
+			let datePlanted = document.querySelector("#Date_Planted").value;
+			let crop = document.querySelector("#cropID").value;
 			let growTime;
 
-			if (cropID = 101){
-				growTime = 365;
-			} else if (cropID = 102) {
-				growTime = 456.25;
-			} else if (cropID = 103){
+			if (crop == 101){
+				growTime = 365;				
+			} else if (crop == 102) {
+				growTime = 456.25;	
+			} else if (crop == 103){
 				growTime = 0;
-			} else if (cropID = 104){
+			} else if (crop == 104){
 				growTime = 1095;
-			} else if (cropID = 105){
+			} else if (crop == 105){
+				growTime = 91.25;
+			} else if (crop == 106){
+				growTime = 212.917;
+			} else if (crop == 107){
+				growTime = 91.25;
+			} else if (crop == 108){
+				growTime = 91.25;
+			} else if (crop == 109){
+				growTime = 91.25;
+			} else if (crop == 110){
+				growTime = 91.25;
+			} else if (crop == 111){
+				growTime = 0;
+			} else if (crop == 112){
+				growTime = 212.917;
+			} else if (crop == 113){
+				growTime = 182.5;
+			} else if (crop == 114){
+				growTime = 91.25;
+			} else if (crop == 115){
+				growTime = 273.75;
+			} else if (crop == 116){
+				growTime = 121.667;
+			} else if (crop == 117){
+				growTime = 0;
+			} else if (crop == 118){
+				growTime = 42;
+			} else if (crop == 119){
+				growTime = 0;
+			} else if (crop == 120){
+				growTime = 121.667;
+			} else if (crop == 121){
+				growTime = 0;
+			} else if (crop == 122){
+				growTime = 182.5;
+			} else if (crop == 123){
+				growTime = 122.667;
+			} else if (crop == 124){
+				growTime = 76.0417;
+			} else if (crop == 125){
+				growTime = 121.667;
+			} else if (crop == 126){
+				growTime = 91.2501;
+			} else if (crop == 127){
+				growTime = 49;
+			} else if (crop == 128){
+				growTime = 0;
+			} else if (crop == 129){
+				growTime = 212.917;
+			} else if (crop == 130){
+				growTime = 56;
+			} else if (crop == 131){
+				growTime = 243.334;
+			} else if (crop == 132){
+				growTime = 273.75;
+			} else if (crop == 133){
+				growTime = 91.25;
+			} else if (crop == 134){
+				growTime = 91.25;
+			} else if (crop == 135){
+				growTime = 91.25;
+			} else if (crop == 136){
+				growTime = 0;
+			} else if (crop == 137){
+				growTime = 0;
+			} else if (crop == 138){
+				growTime = 212.917;
+			} else if (crop == 139){
+				growTime = 243.334;
+			} else if (crop == 140){
+				growTime = 304.167;
+			} else if (crop == 141){
+				growTime = 243.334;
+			} else if (crop == 146){
 				growTime = 8000;
-			} else if (cropID = 106){
+			} else if (crop == 147){
 				growTime = 8000;
-			} else if (cropID = 107){
+			} else if (crop == 148){
 				growTime = 8000;
-			} else if (cropID = 108){
+			} else if (crop == 149){
 				growTime = 8000;
-			} else if (cropID = 109){
+			} else if (crop == 150){
 				growTime = 8000;
-			} else if (cropID = 110){
+			} else if (crop == 151){
 				growTime = 8000;
-			} else if (cropID = 111){
+			} else if (crop == 152){
 				growTime = 8000;
-			} else if (cropID = 112){
+			} else if (crop == 153){
 				growTime = 8000;
-			} else if (cropID = 113){
+			} else if (crop == 154){
 				growTime = 8000;
-			} else if (cropID = 114){
+			} else if (crop == 155){
 				growTime = 8000;
-			} else if (cropID = 115){
+			} else if (crop == 156){
 				growTime = 8000;
-			} else if (cropID = 116){
+			} else if (crop == 157){
 				growTime = 8000;
-			} else if (cropID = 117){
+			} else if (crop == 158){
 				growTime = 8000;
-			} else if (cropID = 118){
+			} else if (crop == 159){
 				growTime = 8000;
-			} else if (cropID = 119){
+			} else if (crop == 160){
 				growTime = 8000;
-			} else if (cropID = 120){
+			} else if (crop == 161){
 				growTime = 8000;
-			} else if (cropID = 121){
+			} else if (crop == 162){
 				growTime = 8000;
-			} else if (cropID = 122){
+			} else if (crop == 163){
 				growTime = 8000;
-			} else if (cropID = 123){
+			} else if (crop == 164){
 				growTime = 8000;
-			}
-
-
-
+			} else if (crop == 165){
+				growTime = 8000;
+			} else if (crop == 166){
+				growTime = 8000;
+			} else if (crop == 167){
+				growTime = 8000;
+			} else if (crop == 168){
+				growTime = 8000;
+			} 
 
 			function convertFromStringToDate(responseDate) {
 				let dateComponents = responseDate.split('T');
 				let datePieces = dateComponents[0].split("-");
+
+				return(new Date(datePieces[2], (datePieces[1] - 1), datePieces[0]));
 				
-				return(new Date(datePieces[2], (datePieces[1] - 1), datePieces[0]))
 			}
 
 			var DateHelper = {
@@ -325,12 +439,10 @@ function addFarmLog(e) {
 			}
 
 			return DateHelper.format(DateHelper.addDays(convertFromStringToDate(datePlanted), growTime));
-
+			
 		}
-		
+
 	
-
-
 function displayLogs() {
 		var transaction = db.transaction(["logs"], "readonly");  
         var content="<table id='logTable' class='highlight responsive-table'><thead><tr><th>id</th><th>Created</th><th>Farmer ID</th><th>Name</th><th>Gender</th><th>Visit Date</th><th>Farmer Address</th><th>Farm Location</th><th>Crop ID</th><th>Acreage</th><th>Exp Yield</th><th>Date Planted</th><th>Exp Harvest Date</th><th>Data Collector</th></thead><tbody>";
@@ -384,12 +496,12 @@ function deleteData() {
 	
 	   request.onsuccess = function(event) {
         displayLogs();
-        console.log("Item removed successfully.");
+		M.toast({html: 'Item removed successfully!'});
     };
 
     request.onerror = function(event) {
         displayLogs();
-        console.log("Error while removing the item.");
+		M.toast({html: 'Error while removing the item.'});
     };
 	
 }
@@ -403,6 +515,7 @@ function editData() {
 			const matching = request.result;
 					if (matching !== undefined) {
 			// A match was found.
+			M.toast({html: 'Match Found.'});
 					let btn = "<button onclick=\"updateLog()\" class=\"btn waves-effect waves-light\">Submit"+" <i class=\"material-icons right\">"+"send</i></button>";
 					
 	   			    $("#farmer_ID").val(matching.farmer_ID);
@@ -426,7 +539,7 @@ function editData() {
 					window.location.hash = '#data-entry';
 					} else {
 					// No match was found.
-						//console.log(null);
+					M.toast({html: 'No Match Found'});
 						}
 				
 		};
@@ -461,7 +574,7 @@ function updateLog(){
 						document.getElementById('add-update').innerHTML = btn;
 						document.getElementById("entry-form").reset();
 						window.location.hash = '#log';
-						console.log('Success in updating record');
+						M.toast({html: 'Success updating Redcord.'});
 					};
 
 		}
@@ -486,10 +599,6 @@ function  sanitizeTable(){
           
   }
 
-
-
-	
-	
 	
 function clearData(){
 		//Get a transaction
@@ -571,7 +680,6 @@ function downloadCSV(csv, filename) {
 	
 }
 
-  // ServiceWorker is a progressive technology. Ignore unsupported browsers
   if ('serviceWorker' in navigator) {
     console.log('CLIENT: service worker registration in progress.');
     navigator.serviceWorker.register('service-worker.js').then(function() {

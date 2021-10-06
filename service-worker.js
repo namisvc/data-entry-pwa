@@ -12,6 +12,7 @@ self.addEventListener('install', function(e) {
 	   '/js/materialize.js',
 	   '/js/init.js',
 	   '/js/crops.js',
+     '/js/validate.js',
       ]);
    })
  );

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />  
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />  
 	<link rel="apple-touch-icon" href="imgs/hello-icon-152.png">   
 	<meta name="theme-color" content="white"/>  
 	<meta name="apple-mobile-web-app-capable" content="yes">  
@@ -14,7 +13,7 @@
 	<meta name="msapplication-TileColor" content="#FFFFFF">
   <title>NAMIS - CROP DATA COLLECTION FORM</title>
 
-  <link rel="manifest" href="/namispwa.github.io/pwa.webmanifest">
+  <link rel="manifest" href="/pwa.webmanifest">
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -22,40 +21,15 @@
 </head>
 <body>
 
-<!--
-	<div class="navbar-fixed">
-	  <nav class="light-green lighten-1" role="navigation">
-		<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img src="imgs/hello-icon-152.png"></a>
-		  <ul class="right hide-on-med-and-down">
-			<li><a href="#data-entry">Form<i class="material-icons right">assignment</i></a></li>
-			<li><a href="#log">Log<i class="material-icons right">view_list</i></a></li>
-			
-		  </ul>
-
-		  <ul id="nav-mobile" class="sidenav">
-			<li><a href="#data-entry">Form<i class="material-icons right">assignment</i></a></li>
-			<li><a href="#log">Log<i class="material-icons right">view_list</i></a></li>
-		  </ul>
-		  <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-		</div>
-	  </nav>
-	</div>
-	
--->
-
-	
-		<div class="fixed-action-btn toolbar">
+		<div id="menu" class="fixed-action-btn toolbar">
 		  <a class="btn-floating btn-large teal lighten-1">
 			<i class="large material-icons">menu</i>
 		  </a>
 		  <ul>
 			<li><a href="#data-entry"><i class="material-icons">assignment</i></a></li>
 			<li><a href="#log"><i class="material-icons">view_list</i></a></li>
-	
 		  </ul>
 		</div>
-			  
-
 
 <div class="container">
 <main role="main" class="app">
@@ -67,7 +41,7 @@
 				</a>
 				<a id="prepareLog" class="btn waves-effect waves-light disabled">Process Log<i class="material-icons right">dynamic_feed</i>
 				</a>
-				 <a id="export" class="btn waves-effect waves-light ">Export<i class="material-icons right">save_alt</i>
+				 <a id="export" class="btn waves-effect waves-light disabled ">Export<i class="material-icons right">save_alt</i>
 				</a>
 			 </div>
 			<div class="col s12">
@@ -78,7 +52,6 @@
 		</div>
 	</div>
    
-   
    <div id="data-entry" class="section">
 
    <div class="row">
@@ -87,20 +60,21 @@
 			
 		<input class="tooltipped teal lighten-1" data-position="right" data-tooltip="Clear / Start New Entry" type="reset" value="Reset">
 		</div>
-
 	
 	  <div class="row">
 		<div class="input-field col s12">
-          <input id="farmer_ID" type="text" class="validate">
+          <input id="farmer_ID" data-length="6" min="6" type="number" class="validate">
           <label for="farmer_ID">Farmer's ID</label>
+		  <span class="helper-text" data-error="wrong" data-success="Farmer ID Succcesful">Please enter 6 digit ID</span>
         </div>
 	  
 		<div class="input-field col s12">
-          <input id="full_name" type="text" class="validate">
-          <label for="full_name">Name</label>
+          <input id="full_name" type="text" class="validate" required="" pattern="^[a-zA-Z ]*$" aria-required="true">
+          <label for="full_name">Farmer Full Name</label>
+		  <span class="helper-text" data-error="wrong" data-success="Succcesful">Please enter the farmer's full name separated by a space</span>
         </div>
 		<div class="input-field col s12">
-			<select id="gender">
+			<select id="gender" required>
 			  <option value="" disabled selected>Please Select Gender</option>
 			  <option value="M">Male</option>
 			  <option value="F">Female</option>
@@ -110,7 +84,7 @@
 
       <div class="row">		
 		<div class="input-field col s12">
-           <input id="farm_visit" type="text" class="datepicker">
+           <input id="farm_visit" type="text" class="datepicker required">
 		<label for="farm_visit">Date Visited</label>
         </div>
         <div class="input-field col s12">
@@ -139,30 +113,75 @@
 			  <option value="110">Corn</option>
 			  <option value="111">Cucumber</option>
 			  <option value="112">Dasheen</option>
+			  <option value="113">Eddoe</option>
+			  <option value="114">Eggplant</option>
+			  <option value="115">Ginger</option>
+			  <option value="116">Groundnuts(peanuts)</option>
+			  <option value="117">Corrilla</option>
+			  <option value="118">Lettuce</option>
+			  <option value="119">Melons(exclude water melon)</option>
+			  <option value="120">Onions</option>
+			  <option value="121">Peas(other, not spring bean)</option>
+			  <option value="122">Peas(pigeon)</option>
+			  <option value="123">Peppers(Hot)(Imp)</option>
+			  <option value="124">Peppers(Sweet)(Imp)</option>
 			  <option value="125">Sweet Potato</option>
+			  <option value="126">Pumpkins</option>
+			  <option value="127">Radish</option>
+			  <option value="128">Eschalot (Shallot)</option>
+			  <option value="129">Sorrel</option>
+			  <option value="130">Squash/Zucchini</option>
+			  <option value="131">Sugar Cane</option>
+			  <option value="132">Tannia</option>
+			  <option value="133">Tobacco</option>
+			  <option value="134">Tomatoes</option>
+			  <option value="135">Water Melon</option>
+			  <option value="136">Yams</option>
+			  <option value="137">Cut Flowers</option>
+			  <option value="138">Portugese Yams</option>
+			  <option value="139">White Yam</option>
+			  <option value="140">Dominic Yam/Yellow</option>
+			  <option value="141">Garlic</option>
+			  <option value="146">Brococoli</option>
+			  <option value="147">Asparagus</option>
+			  <option value="148">Nothing</option>
+			  <option value="149">Orchro</option>
+			  <option value="150">Patchio</option>
+			  <option value="151">Celery/Parsley</option>
+			  <option value="152">Spinach</option>
+			  <option value="153">Chichira</option>
+			  <option value="154">Thyme</option>
+			  <option value="155">Avocado Pears</option>
+			  <option value="156">Bananas</option>
+			  <option value="157">Breadfruit</option>
+			  <option value="158">Breadnut</option>
+			  <option value="159">Cherry</option>
+			  <option value="160">Cocoa</option>
+			  <option value="161">Coconut/Dry Coconut</option>
+			  <option value="162">Coffee</option>
+			  <option value="163">Five Finger Carambola</option>
+			  <option value="164">Golden Apple</option>
+			  <option value="165">Grapefruit</option>
+			  <option value="166">Guava</option>
+			  <option value="167">Lemon</option>
+			  <option value="168">Limes</option>
+
+
+		
 			</select>
 		 </div>
         <div class="input-field col s12">
-          <input id="Acreage" type="text" class="validate">
-          <label for="Acreage">Acreage</label>
+          <input id="Acreage" type="number" step="any" min="0" class="validate">
+          <label for="Acreage">Acreage Planted</label>
+		  <span class="helper-text" data-error="wrong" data-success="Succcesful">Lots as fraction of an Acre or Total Acres Planted</span>
         </div>
-		<div class="input-field col s12">
-          <input id="Exp_Yield" type="text" class="validate">
-          <label for="Exp_Yield">Expected Yield</label>
-        </div>
-
+				<div class="input-field col s12">
+					<input id="Date_Planted" type="text" class="datepicker">
+					<label for="Date_Planted">Date Planted</label>
+					<span class="helper-text" data-error="wrong" data-success="Succcesful">Please select the date this crop was planted.</span>
+				</div>
+				
       </div>
-	  <div class="row">
-		<div class="input-field col s12">
-           <input id="Date_Planted" type="text" class="datepicker">
-		<label for="Date_Planted">Date Planted</label>
-        </div>
-		<div class="input-field col s12">
-           <input id="Exp_Harvest_Date" type="text" class="datepicker">
-		<label for="Exp_Harvest_Date">Expected </label>
-		</div>
-	 </div>
-	 
 	 
     <div class="row">
       <div id="add-update" class="col s4 offset-s9">
@@ -174,34 +193,33 @@
          
 		</form>
   </div>
-      </div>
+      </div>	
 	  
-	  
+	
 	<div id="the-default-view" class="section no-pad-bot">
 		<div class="row center">
 		    <div class="container">
 			  <br><br>
 			  <h1 class="header center orange-text">Welcome</h1>
 			  <div class="row center">
-				<h5 class="header col s12 light">National Marketing Information System (NAMIS)</br>Farm Data Collection Entry Form</h5>
+				<h5 class="header col s12 light">National Agriculture and Management Information System (NAMIS)</br>Farm Data Collection Entry Form</h5>
 						<br><br><br><br>
 				 <p>Simply enter your full name below to begin.</br></p>
 
 			  </div>
-
 			  <br><br>
-
 			</div>
 		
 		<form>
 			<div class="col s6 offset-s3">
 				<div class="input-field col s12">
-					 <input id="datacollector" type="text" class="validate">
+					 <input id="datacollector" name="datacollector" type="text" class="validate" required>
 					 <label for="datacollector">Name</label>
+					 <span class="helper-text" data-error="There is an error in your name" data-success="Succcesful">Please enter your full name</span>
 				</div>
 			</div>
 			<div class="col s6 offset-s3">
-				<button id="login" class="btn waves-effect waves-light">Submit
+				<button id="login" class="btn waves-effect waves-purple">Submit
 					<i class="material-icons right">send</i>
 				</button>
 			</div>
@@ -212,13 +230,7 @@
 </main>
     </div>
 	
-
-	
     </br></br>
-
-
-
-
 
   <footer>
 
@@ -226,11 +238,11 @@
 
 
   <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script src="js/crops.js"></script>
-  
+  <script src="js/validate.js"></script>
   
   </body>
 </html>

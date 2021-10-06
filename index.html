@@ -70,10 +70,11 @@
 	  
 		<div class="input-field col s12">
           <input id="full_name" type="text" class="validate" required="" pattern="^[a-zA-Z ]*$" aria-required="true">
-          <label for="full_name">Name</label>
+          <label for="full_name">Farmer Full Name</label>
+		  <span class="helper-text" data-error="wrong" data-success="Succcesful">Please enter the farmer's full name separated by a space</span>
         </div>
 		<div class="input-field col s12">
-			<select id="gender">
+			<select id="gender" required>
 			  <option value="" disabled selected>Please Select Gender</option>
 			  <option value="M">Male</option>
 			  <option value="F">Female</option>
@@ -83,7 +84,7 @@
 
       <div class="row">		
 		<div class="input-field col s12">
-           <input id="farm_visit" type="text" class="datepicker">
+           <input id="farm_visit" type="text" class="datepicker required">
 		<label for="farm_visit">Date Visited</label>
         </div>
         <div class="input-field col s12">
@@ -141,10 +142,6 @@
 			  <option value="139">White Yam</option>
 			  <option value="140">Dominic Yam/Yellow</option>
 			  <option value="141">Garlic</option>
-			  <option value="142">Mixed Vegetables</option>
-			  <option value="143">Peas Processed</option>
-			  <option value="144">Pop Corn</option>
-			  <option value="145">Soya</option>
 			  <option value="146">Brococoli</option>
 			  <option value="147">Asparagus</option>
 			  <option value="148">Nothing</option>
@@ -176,29 +173,15 @@
         <div class="input-field col s12">
           <input id="Acreage" type="number" step="any" min="0" class="validate">
           <label for="Acreage">Acreage Planted</label>
+		  <span class="helper-text" data-error="wrong" data-success="Succcesful">Lots as fraction of an Acre or Total Acres Planted</span>
         </div>
-	
-		<div class="input-field col s10">
-          <input id="Exp_Yield" type="number" class="validate">
-          <label for="Exp_Yield">Expected Yield</label>
-        </div>
-		<div id="genYield" class="btn ">
-			<span>Calculate Yield</span>
-		</div>
-
-			<div class="row">
-					<div class="input-field col s12">
+				<div class="input-field col s12">
 					<input id="Date_Planted" type="text" class="datepicker">
 					<label for="Date_Planted">Date Planted</label>
-					</div>
-					<div class="input-field col s12">
-					<input id="Exp_Harvest_Date" type="text" class="datepicker">
-					<label for="Exp_Harvest_Date">Expected Harvest Date</label>
-					</div>
+					<span class="helper-text" data-error="wrong" data-success="Succcesful">Please select the date this crop was planted.</span>
 				</div>
+				
       </div>
-	 
-	 
 	 
     <div class="row">
       <div id="add-update" class="col s4 offset-s9">
@@ -213,12 +196,6 @@
       </div>	
 	  
 	
-	  
-
-
-
-
-	  
 	<div id="the-default-view" class="section no-pad-bot">
 		<div class="row center">
 		    <div class="container">
@@ -236,8 +213,9 @@
 		<form>
 			<div class="col s6 offset-s3">
 				<div class="input-field col s12">
-					 <input id="datacollector" name="datacollector" type="text" class="validate">
+					 <input id="datacollector" name="datacollector" type="text" class="validate" required>
 					 <label for="datacollector">Name</label>
+					 <span class="helper-text" data-error="There is an error in your name" data-success="Succcesful">Please enter your full name</span>
 				</div>
 			</div>
 			<div class="col s6 offset-s3">
@@ -264,6 +242,7 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script src="js/crops.js"></script>
+  <script src="js/validate.js"></script>
   
   </body>
 </html>
