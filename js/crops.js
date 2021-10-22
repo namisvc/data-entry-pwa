@@ -25,7 +25,8 @@ window.addEventListener("load", function() {
 
 		db = e.target.result;
 
-		document.querySelector("#addLogButton").addEventListener("click", addFarmLog, false);
+		//document.querySelector("#addLogButton").addEventListener("click", addFarmLog, false);
+		document.querySelector("#addLogButton").addEventListener("click", validateForm, false);
 		document.querySelector("#login").addEventListener("click", registerCollector, false);
 		document.querySelector("#showLog").addEventListener("click", displayLogs, false);
 		document.querySelector("#export").addEventListener("click", exportTableToCSV, false);
@@ -55,6 +56,19 @@ function registerCollector(){
 	window.location.hash = '#data-entry';
 }
 
+function validateForm(){
+	 // Select the required elements
+	 if (($('#entry-form .validate.valid').length === $('#entry-form .validate').length) 
+	 	&& $("#gender")[0].selectedIndex > 0 && $("#cropID")[0].selectedIndex > 0) {
+		//return true
+	  addFarmLog();
+	}
+	else{
+		//return false
+		M.toast({html: 'Please recheck all form fields!'});
+	}
+	 
+};
 
 function addFarmLog(e) {
 	var today = recDate();

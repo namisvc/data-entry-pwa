@@ -63,36 +63,37 @@
 	
 	  <div class="row">
 		<div class="input-field col s12">
-          <input id="farmer_ID" data-length="6" min="6" type="number" class="validate">
+          <input id="farmer_ID" data-length="6" min="6" type="number" class="validate" required="">
           <label for="farmer_ID">Farmer's ID</label>
-		  <span class="helper-text" data-error="wrong" data-success="Farmer ID Succcesful">Please enter 6 digit ID</span>
+		  <span class="helper-text" data-error="Please enter a valid farmer ID" data-success="Farmer ID Succcesful">Please enter 6 digit ID</span>
         </div>
 	  
 		<div class="input-field col s12">
           <input id="full_name" type="text" class="validate" required="" pattern="^[a-zA-Z ]*$" aria-required="true">
           <label for="full_name">Farmer Full Name</label>
-		  <span class="helper-text" data-error="wrong" data-success="Succcesful">Please enter the farmer's full name separated by a space</span>
+		  <span class="helper-text" data-error="Please enter the farmer's full name separated by a space" data-success="Succcesful">Please enter the farmer's full name separated by a space</span>
         </div>
 		<div class="input-field col s12">
-			<select id="gender" required>
+			<select id="gender" >
 			  <option value="" disabled selected>Please Select Gender</option>
 			  <option value="M">Male</option>
 			  <option value="F">Female</option>
 			</select>
+			<span class="helper-text" data-error="wrong" data-success="Succcesful">Please select a gender</span>
 		 </div>
 	  </div>
 
       <div class="row">		
 		<div class="input-field col s12">
-           <input id="farm_visit" type="text" class="datepicker required">
+           <input id="farm_visit" type="text" class="datepicker validate" required="" aria-required="true">
 		<label for="farm_visit">Date Visited</label>
         </div>
         <div class="input-field col s12">
-          <input id="Farmer_Address" type="text" class="validate">
+          <input id="Farmer_Address" type="text" class="validate" required="" aria-required="true">
           <label for="Farmer_Address">Farmer Address</label>
         </div>
 		<div class="input-field col s12">
-          <input id="Farm_location" type="text" class="validate">
+          <input id="Farm_location" type="text" class="validate" required="" aria-required="true">
           <label for="Farm_location">Farm location</label>
         </div>
 
@@ -171,12 +172,12 @@
 			</select>
 		 </div>
         <div class="input-field col s12">
-          <input id="Acreage" type="number" step="any" min="0" class="validate">
+          <input id="Acreage" type="number" step="any" min="0" class="validate" required="" aria-required="true">
           <label for="Acreage">Acreage Planted</label>
 		  <span class="helper-text" data-error="wrong" data-success="Succcesful">Lots as fraction of an Acre or Total Acres Planted</span>
         </div>
 				<div class="input-field col s12">
-					<input id="Date_Planted" type="text" class="datepicker">
+					<input id="Date_Planted" type="text" class="datepicker validate" required="" aria-required="true">
 					<label for="Date_Planted">Date Planted</label>
 					<span class="helper-text" data-error="wrong" data-success="Succcesful">Please select the date this crop was planted.</span>
 				</div>
@@ -242,7 +243,7 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script src="js/crops.js"></script>
-  <script src="js/validate.js"></script>
+ 
   
   </body>
 </html>
