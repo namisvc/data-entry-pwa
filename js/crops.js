@@ -459,7 +459,7 @@ function addFarmLog(e) {
 	
 function displayLogs() {
 		var transaction = db.transaction(["logs"], "readonly");  
-        var content="<table id='logTable' class='highlight responsive-table'><thead><tr><th>id</th><th>Created</th><th>Farmer ID</th><th>Name</th><th>Gender</th><th>Visit Date</th><th>Farmer Address</th><th>Farm Location</th><th>Crop ID</th><th>Acreage</th><th>Exp Yield</th><th>Date Planted</th><th>Exp Harvest Date</th><th>Data Collector</th></thead><tbody>";
+        var content="<table id='logTable' class='highlight responsive-table'><thead><tr><th>id</th><th>Farmer ID</th><th>Name</th><th>Gender</th><th>Visit Date</th><th>Farmer Address</th><th>Farm Location</th><th>Crop ID</th><th>Acreage</th><th>Exp Yield</th><th>Date Planted</th><th>Exp Harvest Date</th><th>Data Collector</th><th>Created</th></thead><tbody>";
 
 		transaction.oncomplete = function(event) {
             $("#LogList").html(content);
@@ -470,8 +470,7 @@ function displayLogs() {
           if (cursor) {  
 			content	+="<tr>";
 			content += "<td>"+cursor.value.id+"</td>";
-            content += "<td>"+cursor.value.created+"</td>";
-			content +="<td>"+cursor.value.farmer_ID+"</td>";
+            content +="<td>"+cursor.value.farmer_ID+"</td>";
 			content +="<td>"+cursor.value.full_name+"</td>";
 			content +="<td>"+cursor.value.gender+"</td>";
 			content +="<td>"+cursor.value.farm_visit+"</td>";
@@ -483,6 +482,7 @@ function displayLogs() {
 			content +="<td>"+cursor.value.Date_Planted+"</td>";
 			content +="<td>"+cursor.value.Exp_Harvest_Date+"</td>";
 			content +="<td>"+cursor.value.Data_collector+"</td>";
+			content += "<td>"+cursor.value.created+"</td>";
 			content +="</tr>";
             cursor.continue();  
           }  
